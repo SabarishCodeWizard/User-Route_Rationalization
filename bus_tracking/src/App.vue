@@ -3,13 +3,34 @@
   
   <RouterView />
 </template>
-  <script >
+<script>
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "vue-router";
+import { auth } from "./firebase/firebase.js"; // Import your firebase auth configuration
 
-  export default {
-  name: 'App',
-  
-  }
-  </script>
+export default {
+  name: "App",
+  setup() {
+    const router = useRouter();
+    
+    // Listen for auth state changes
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // If user is logged in, navigate to RouteForm
+        if (router.currentRoute.value.name === "Login" || router.currentRoute.value.name === "Register") {
+          router.push("/"); // Redirect to home page (RouteForm)
+        }
+      } else {
+        // If no user is logged in, redirect to login
+        if (router.currentRoute.value.name !== "Login") {
+          router.push("/login"); // Redirect to login page
+        }
+      }
+    });
+  },
+};
+</script>
+
 
 <style scoped>
 header {

@@ -18,38 +18,42 @@
 
 <script>
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useRouter } from "vue-router"; // Import useRouter for navigation
+import { useRouter } from "vue-router";
 
 export default {
-  name: "Login",
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
+name: "Login",
+data() {
+  return {
+    email: "",
+    password: "",
+  };
+},
+methods: {
+  async handleLogin() {
+    const auth = getAuth();
+    const router = useRouter();
+    try {
+      await signInWithEmailAndPassword(auth, this.email, this.password);
+      alert("Login successful!");
+      // Redirect to RouteForm page after login
+      router.push("/");
+    } catch (error) {
+      alert(error.message);
+    }
   },
-  methods: {
-    async handleLogin() {
-      const auth = getAuth();
-      try {
-        await signInWithEmailAndPassword(auth, this.email, this.password);
-        alert("Login successful!");
-        this.$router.push("/"); // Redirect to home
-      } catch (error) {
-        alert(error.message);
-      }
-    },
-    async handleGoogleSignIn() {
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
-      try {
-        await signInWithPopup(auth, provider);
-        alert("Google sign-in successful!");
-        this.$router.push("/"); // Redirect to home
-      } catch (error) {
-        alert(error.message);
-      }
-    },
+  async handleGoogleSignIn() {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    const router = useRouter();
+    try {
+      await signInWithPopup(auth, provider);
+      alert("Google sign-in successful!");
+      // Redirect to RouteForm page after Google login
+      router.push("/");
+    } catch (error) {
+      alert(error.message);
+    }
   },
+},
 };
 </script>
