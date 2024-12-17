@@ -1,3 +1,5 @@
+<!-- components/topbar.vue -->
+
 <template>
   <div class="topbar">
     <div class="logo-container">
