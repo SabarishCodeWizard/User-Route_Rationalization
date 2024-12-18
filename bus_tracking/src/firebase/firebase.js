@@ -1,18 +1,20 @@
 // views/firebase/firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyChW576jwvVZYQJ6Fy1NPthH5eBeTf3WLI",
-    authDomain: "translator-f9772.firebaseapp.com",
-    projectId: "translator-f9772",
-    storageBucket: "translator-f9772.appspot.com",
-    messagingSenderId: "338629626503",
-    appId: "1:338629626503:web:c9a9f2767f112d1ec88622",
-    measurementId: "G-1H16RJE596",
+    apiKey: "AIzaSyAOAPSUbNTn_6BcGlhzD50ZSRcVTHOW_hI",
+    authDomain: "route-7b721.firebaseapp.com",
+    projectId: "route-7b721",
+    storageBucket: "route-7b721.firebasestorage.app",
+    messagingSenderId: "148523132343",
+    appId: "1:148523132343:web:db3538ecd988e5c58eb432",
+    measurementId: "G-44GG66PHBF"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getDatabase(app);
 
-export { auth };
+export { auth, db };

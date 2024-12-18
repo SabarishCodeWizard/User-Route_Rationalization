@@ -1,3 +1,5 @@
+<!-- views/dashboard.vue -->
+
 <template>
     <div class="dashboard">
       

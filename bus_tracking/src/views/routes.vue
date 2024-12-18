@@ -1,3 +1,4 @@
+<!-- views/routes.vue -->
 <template>
   <div>
     <topbar />
